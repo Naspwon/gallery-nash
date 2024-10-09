@@ -33,8 +33,8 @@ pipeline{
             steps{
                 withCredentials([string(credentialsId: '1ff155a8-5a1e-4945-8cb3-90a740261851', variable: 'RENDER_TOKEN')]) {
                     sh 'render login --token $RENDER_TOKEN'
-                    sh 'render deploy --branch main'
+                    sh 'render deploy --branch main'}
             }
         }
     }
-}
+ }
