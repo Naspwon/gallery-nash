@@ -12,6 +12,11 @@ pipeline{
                 )
             }
         }
+        stage('Install Render CLI'){
+            steps{
+                sh 'npm install -g @render/render-cli'
+            }
+        }
         stage('Install dependencies'){
             steps{
                 sh 'npm install'
@@ -19,7 +24,7 @@ pipeline{
         }
         stage('Run tests'){
             steps{
-                echo "Tested successfully...."
+                echo "Tested successfully!!"
             }
         }
         stage('Start application'){
@@ -31,7 +36,7 @@ pipeline{
         }
         stage('Deploy to Render'){
             steps{
-                withCredentials([string(credentialsId: '1ff155a8-5a1e-4945-8cb3-90a740261851', variable: 'RENDER_TOKEN')]) {
+                withCredentials([string(credentialsId: 'Gallery_Nash_Render', variable: 'RENDER_TOKEN')]) {
                     sh 'render login --token $RENDER_TOKEN'
                     sh 'render deploy --branch main'}
             }
