@@ -7,8 +7,8 @@ pipeline{
         stage('Clone repo'){
             steps{
                 git(
-                    url 'https://github.com/Naspwon/gallery-nash.git',
-                    branch 'main'
+                    url: 'https://github.com/Naspwon/gallery-nash.git',
+                    branch: 'main'
                 )
             }
         }
