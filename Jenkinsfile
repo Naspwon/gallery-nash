@@ -44,7 +44,7 @@ pipeline{
                         export PATH=$PATH:$HOME/.local/bin
                         render login --token $RENDER_TOKEN
                         render deploy --branch main
-                }  '''
+                    '''}
             }
         }
     }
