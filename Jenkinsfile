@@ -15,7 +15,7 @@ pipeline{
         stage('Install Render CLI'){
             steps{
                 sh '''
-                    curl -sSL https://get.render.com | sh
+                    curl -sSL https://get.render.com/cli.sh | sh
                     # Ensure the render command is available
                     export PATH=$PATH:$HOME/.local/bin
                     echo $PATH
