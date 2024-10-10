@@ -16,6 +16,10 @@ pipeline{
             steps{
                 sh '''
                     curl -sSL https://get.render.com | sh
+                    # Ensure the render command is available
+                    export PATH=$PATH:$HOME/.local/bin
+                    echo $PATH
+                    render --version  # Verify installation
                 '''
             }
         }
