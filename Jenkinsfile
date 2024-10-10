@@ -12,6 +12,14 @@ pipeline{
                 )
             }
         }
+        stage('Install Render CLI') {
+            steps {
+                sh '''
+                    curl -sSL https://get.render.com/cli.sh | sh
+                    export PATH=$PATH:$HOME/.local/bin
+                '''
+            }
+        }
         stage('Install dependencies'){
             steps{
                 sh 'npm install'
