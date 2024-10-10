@@ -14,7 +14,9 @@ pipeline{
         }
         stage('Install Render CLI'){
             steps{
-                sh 'npm install -g @render/render-cli'
+                sh '''
+                    curl -sSL https://get.render.com | sh
+                '''
             }
         }
         stage('Install dependencies'){
