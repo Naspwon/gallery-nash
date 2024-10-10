@@ -11,3 +11,19 @@ config.mongoURI = {
     test: 'mongodb+srv://Nayomie:Welcome123@nash.j03th.mongodb.net/darkroom-test?retryWrites=true&w=majority&appName=Nash',
 }
 module.exports = config;
+
+
+
+
+
+
+// var config = {}
+
+// // Update to use environment variables for username and password
+// config.mongoURI = {
+//     production: `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@nash.j03th.mongodb.net/darkroom?retryWrites=true&w=majority&appName=Nash`,
+//     development: `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@nash.j03th.mongodb.net/darkroom-dev?retryWrites=true&w=majority&appName=Nash`,
+//     test: `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@nash.j03th.mongodb.net/darkroom-test?retryWrites=true&w=majority&appName=Nash`
+// }
+
+// module.exports = config;
