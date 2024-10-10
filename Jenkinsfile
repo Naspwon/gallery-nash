@@ -36,5 +36,19 @@ pipeline{
                 }
             }
         }
+        stage('Deploy to Render'){
+            steps{
+                withCredentials([string(credentialsId: 'Gallery_Nash_Render', variable: 'RENDER_API_KEY')]) {
+                    sh """
+                    curl -X POST https://api.render.com/v1/services/srv-cs3ovg88fa8c73df61dg/deploys \
+                    -H "Authorization: Bearer $RENDER_API_KEY" \
+                    -H "Content-Type: application/json" \
+                    -d '{
+                        "branch": "main"
+                    }'
+                    """
+                }
+            }
+        }
     }
  }
