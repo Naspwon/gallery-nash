@@ -12,14 +12,18 @@ pipeline{
                 )
             }
         }
-        stage('Install Render CLI'){
+        stage('Check connectivity'){
             steps{
+                sh 'ping -c 3 google.com'  // Verify internet connectivity
+            }
+        }
+        stage('Install Render CLI') {
+            steps {
                 sh '''
                     curl -sSL https://get.render.com/cli.sh | sh
-                    # Ensure the render command is available
-                    export PATH=$PATH:$HOME/.local/bin
-                    echo $PATH
-                    render --version  # Verify installation
+                    echo "export PATH=\$PATH:\$HOME/.local/bin" >> ~/.bashrc
+                    source ~/.bashrc  // Update the current session
+                    render --version  // Verify installation
                 '''
             }
         }
