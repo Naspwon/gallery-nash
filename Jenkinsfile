@@ -19,7 +19,7 @@ pipeline{
         }
         stage('Run tests'){
             steps{
-                echo "Tested successfully!!!"
+                sh 'npm test'
             }
         }
         stage('Start application'){
@@ -49,6 +49,13 @@ pipeline{
                     """
                 }
             }
+        }
+    }
+    post{
+        failure{
+            mail to: 'nyongesanasipwoni@gmail.com',
+            subject: "Build Failed: ${env.BUILD_ID}",
+            body: "Test failed. Please check the build logs."
         }
     }
  }
