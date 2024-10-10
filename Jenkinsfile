@@ -40,8 +40,11 @@ pipeline{
         stage('Deploy to Render'){
             steps{
                 withCredentials([string(credentialsId: 'Gallery_Nash_Render', variable: 'RENDER_TOKEN')]) {
-                    sh 'render login --token $RENDER_TOKEN'
-                    sh 'render deploy --branch main'}
+                    sh '''
+                        export PATH=$PATH:$HOME/.local/bin
+                        render login --token $RENDER_TOKEN
+                        render deploy --branch main
+                }  '''
             }
         }
     }
