@@ -12,14 +12,6 @@ pipeline{
                 )
             }
         }
-        stage('Install Render CLI') {
-            steps {
-                sh '''
-                    curl -sSL https://get.render.com/cli.sh | sh
-                    export PATH=$PATH:$HOME/.local/bin
-                '''
-            }
-        }
         stage('Install dependencies'){
             steps{
                 sh 'npm install'
@@ -37,14 +29,11 @@ pipeline{
                 sh 'curl -I http://localhost:5000 || exit 1'
             }
         }
-        stage('Deploy to Render'){
+        stage('Deploy to Heroku'){
             steps{
-                withCredentials([string(credentialsId: 'Gallery_Nash_Render', variable: 'RENDER_TOKEN')]) {
-                    sh '''
-                        export PATH=$PATH:$HOME/.local/bin
-                        render login --token $RENDER_TOKEN
-                        render deploy --branch main
-                    '''}
+                withCredentials([usernameColonPassword(credentialsId: 'Heroku_API_Key', variable: 'HEROKU_CREDENTIALS')]){
+                    sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/gallery-nash.git main'
+                }
             }
         }
     }
